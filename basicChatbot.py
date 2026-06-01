@@ -1,12 +1,3 @@
-# env
-from dotenv import load_dotenv
-load_dotenv()
-
-# create a client
-from anthropic import Anthropic
-client = Anthropic()
-model = "claude-haiku-4-5"
-
 from helperFuncsChatbot import add_user_message, add_assistant_message, chat
 
 messages = []
