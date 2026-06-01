@@ -17,14 +17,15 @@ def add_assistant_message(messages, text):
     assistant_message = {"role": "assistant", "content": text}
     messages.append(assistant_message)
 
-def chat(messages):
-    system = """
-    You are a helpful assistant. Be concise and direct.
-    """
-    message = client.messages.create(
-        model=model,
-        max_tokens=1000,
-        messages=messages,
-        system=system
-    )
+def chat(messages, system=None):
+    params = {
+        "model": model,
+        "max_tokens": 1000,
+        "messages": messages
+    }
+
+    if system:
+        params["system"] = system
+
+    message = client.messages.create(**params)
     return message.content[0].text
